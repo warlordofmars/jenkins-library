@@ -1,4 +1,4 @@
-def call(inputText, artifactsToArchive) {
+def call(String inputText, String artifactsToArchive) {
     pipeline {
         agent any
         environment {
