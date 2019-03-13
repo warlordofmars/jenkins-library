@@ -1,8 +1,7 @@
-def call(String inputText, String artifactsToArchive, String dockerBuilderLabel, String dockerBuilderArgs) {
+def call(String inputText, String artifactsToArchive, String dockerBuilderArgs) {
     pipeline {
         agent {
             dockerfile {
-                label dockerBuilderLabel
                 args dockerBuilderArgs
             }
         }
