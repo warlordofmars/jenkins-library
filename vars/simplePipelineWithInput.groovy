@@ -5,6 +5,9 @@ def call(String inputText, String artifactsToArchive, String dockerBuilderArgs) 
                 args dockerBuilderArgs
             }
         }
+        environment {
+            PATH = "/usr/local/bin:$PATH"
+        }
         stages {
 
             stage('version') {
