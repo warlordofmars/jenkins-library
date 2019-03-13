@@ -3,7 +3,6 @@ def call(String inputText, String artifactsToArchive, String dockerBuilderArgs) 
         agent {
             dockerfile {
                 args dockerBuilderArgs
-                label 'docker'
             }
         }
         environment {
