@@ -1,8 +1,10 @@
-def call(String inputText, String artifactsToArchive) {
+def call(String inputText, String artifactsToArchive, String dockerBuilderLabel, String dockerBuilderArgs) {
     pipeline {
-        agent any
-        environment {
-            PATH = "/usr/local/bin:$PATH"
+        agent {
+            dockerfile {
+                label dockerBuilderLabel
+                args dockerBuilderArgs
+            }
         }
         stages {
 
