@@ -1,5 +1,6 @@
 def call(String inputText, String artifactsToArchive, String dockerBuilderArgs) {
     pipeline {
+        agent any
         environment {
             PATH = "/usr/local/bin:$PATH"
         }
