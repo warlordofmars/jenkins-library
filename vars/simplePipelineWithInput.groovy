@@ -1,6 +1,10 @@
 def call(String inputText, String artifactsToArchive, String dockerBuilderArgs) {
     pipeline {
-        agent any
+        agent {
+            dockerfile {
+                args dockerBuilderArgs
+            }
+        }
         environment {
             PATH = "/usr/local/bin:$PATH"
         }
@@ -16,11 +20,6 @@ def call(String inputText, String artifactsToArchive, String dockerBuilderArgs) 
             }
 
             stage('build') {
-                agent {
-                    dockerfile {
-                        args dockerBuilderArgs
-                    }
-                }
                 steps {
                     sh 'echo $UID $USER $HOME $PWD'
                     sh './gradlew build'
@@ -28,11 +27,6 @@ def call(String inputText, String artifactsToArchive, String dockerBuilderArgs) 
             }
 
             stage('test') {
-                agent {
-                    dockerfile {
-                        args dockerBuilderArgs
-                    }
-                }
                 steps {
                     sh './gradlew deploy'
                     input inputText
@@ -40,11 +34,6 @@ def call(String inputText, String artifactsToArchive, String dockerBuilderArgs) 
             }
 
             stage('promote') {
-                agent {
-                    dockerfile {
-                        args dockerBuilderArgs
-                    }
-                }
                 environment {
                     PROMOTE = true
                 }
