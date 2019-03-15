@@ -21,7 +21,6 @@ def call(String inputText, String artifactsToArchive, String dockerBuilderArgs) 
 
             stage('build') {
                 steps {
-                    sh 'echo $UID $USER $HOME $PWD'
                     sh './gradlew build'
                 }      
             }
